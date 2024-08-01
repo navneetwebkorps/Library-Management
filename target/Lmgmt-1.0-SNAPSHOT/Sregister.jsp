@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+    function registerValidation() {
+    var namePattern = /^[A-Za-z]+(?: [A-Za-z]+)*[A-Za-z]$/;
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var passwordPattern = /^(?=.*[@#$!%*?&])[A-Za-z\d@#$!%*?&]{8,15}$/;
+
+    var name = document.getElementsByName("name")[0].value;
+    var email = document.getElementsByName("mail")[0].value; // Change "email" to "mail"
+    var password = document.getElementsByName("password")[0].value;
+
+    document.getElementById("nameError").innerText = "";
+    document.getElementById("emailError").innerText = "";
+    document.getElementById("passwordError").innerText = "";
+
+    if (!namePattern.test(name)) {
+        document.getElementById("nameError").innerText = "Name must not start or end with spaces and can contain only alphabetic characters and single spaces between words.";
+        return false;
+    }
+    if (!emailPattern.test(email)) {
+        document.getElementById("emailError").innerText = "Please enter a valid email address.";
+        return false;
+    }
+    if (!passwordPattern.test(password)) {
+        document.getElementById("passwordError").innerText = "Password must be at least 8 characters long and include at least one special symbol.";
+        return false;
+    }
+    return true;
+}
+    </script>
+</head>
+<body style="background: #32a89e"> 
+    <form name="Sregister" action="Sregister" method="post" onsubmit="return registerValidation()" style="margin: 100px 500px 100px 500px; padding: 50px; border: 2px solid #000; background: white;">
+        <h1 style="text-align: center">Student Registration</h1>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+            <span id="nameError" style="color: red;"></span>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="mail" required>
+            <span id="emailError" style="color: red;"></span>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+            <span id="passwordError" style="color: red;"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</body>
+</html>
